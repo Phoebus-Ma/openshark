@@ -1,0 +1,7 @@
+{
+    "name"  : "qemu-7.2.0.tar.xz",
+    "download"  : {
+        "file"  : "https://download.qemu.org/qemu-7.2.0.tar.xz",
+        "md5"   : "7630d6a9eba7ab2bcb9979d6d24c2697  qemu-7.2.0.tar.xz"
+    }
+}

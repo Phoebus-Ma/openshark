@@ -1,0 +1,7 @@
+{
+    "name"  : "gcc-12.2.0.tar.xz",
+    "download"  : {
+        "file"  : "http://mirrors.ustc.edu.cn/gnu/gcc/gcc-12.2.0/gcc-12.2.0.tar.xz",
+        "md5"   : "73bafd0af874439dcdb9fc063b6fb069  gcc-12.2.0.tar.xz"
+    }
+}

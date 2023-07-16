@@ -1,0 +1,7 @@
+{
+    "name"  : "u-boot-2023.07.tar.bz2",
+    "download"  : {
+        "file"  : "https://ftp.denx.de/pub/u-boot/u-boot-2023.07.tar.bz2",
+        "md5"   : "db702217d416d19ff416a2b2f39347a4  u-boot-2023.07.tar.bz2"
+    }
+}

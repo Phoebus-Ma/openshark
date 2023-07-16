@@ -1,0 +1,7 @@
+{
+    "name"  : "linux-6.1.38.tar.xz",
+    "download"  : {
+        "file"  : "http://mirrors.ustc.edu.cn/kernel.org/linux/kernel/v6.x/linux-6.1.38.tar.xz",
+        "md5"   : "4cd95963f1ea8068565dfb25a6719583  linux-6.1.38.tar.xz"
+    }
+}
