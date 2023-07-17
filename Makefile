@@ -15,5 +15,7 @@ $(shell if [ ! -d ${OUTPUT}"/target" ]; then mkdir -p ${OUTPUT}"/target"; fi )
 $(shell if [ ! -d ${OUTPUT}"/rootfs" ]; then mkdir -p ${OUTPUT}"/rootfs"; fi )
 
 dl-packages:
-	# ./scripts/download.sh
-	# ./scripts/build.sh
+	./scripts/download.sh
+	./scripts/build.sh
+	./scripts/mkrootfs.sh
+	./scripts/pack.sh

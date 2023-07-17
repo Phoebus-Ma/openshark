@@ -1,0 +1,5 @@
+::sysinit:/etc/init.d/rcS
+::askfirst:-/bin/sh
+::ctrlaltdel:/sbin/reboot
+::restart:/sbin/init
+::shotdown:/bin/mount
