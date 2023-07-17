@@ -1,32 +1,41 @@
 #!/bin/sh
 
 TOP_DIR=$PWD
+DL_DIR=${TOP_DIR}/dl
+SOURCE_DIR=${TOP_DIR}/output/sources
+NAME_KEY='.name'
 
-name=$(cat ${TOP_DIR}/packages/busybox/busybox.json | jq -r '.name')
+# Get json file path.
+if [ "linux" = "$1" ]; then
+    PAC_DIR=${TOP_DIR}/kernel
+else
+    PAC_DIR=${TOP_DIR}/packages/$1
+fi
 
-if [ -n "${TOP_DIR}/dl/busybox/${name}" ]; then
-    if [ ! -d "${TOP_DIR}/output/sources/busybox-1.36.1" ]; then
-        tar -xf ${TOP_DIR}/dl/busybox/${name} -C ${TOP_DIR}/output/sources
+JSON_FILE=${PAC_DIR}/$1.json
+
+# Get json keyword value.
+if [ -f ${JSON_FILE} ]; then
+    PAC_NAME=$(cat ${JSON_FILE} | jq -r ${NAME_KEY})
+else
+    echo "the "${JSON_FILE}" does not exist."
+    exit 1
+fi
+
+# Strip file suffix.
+NAME=${PAC_NAME%*.tar.*}
+
+# Package source dir
+BUILD_DIR=${SOURCE_DIR}/${NAME}
+
+# Decompressing the package.
+if [ -f "${DL_DIR}/$1/${PAC_NAME}" ]; then
+    if [ ! -d "${BUILD_DIR}" ]; then
+        tar -xf ${DL_DIR}/$1/${PAC_NAME} -C ${SOURCE_DIR}
     fi
-
-    cp ${TOP_DIR}/packages/busybox/busybox-qemu.config ${TOP_DIR}/output/sources/busybox-1.36.1/.config
-    cd ${TOP_DIR}/output/sources/busybox-1.36.1/
-    make -j2 && make install
 else
     echo "the package does not exist."
 fi
 
-
-name=$(cat ${TOP_DIR}/kernel/linux.json | jq -r '.name')
-
-if [ -n "${TOP_DIR}/dl/linux/${name}" ]; then
-    if [ ! -d "${TOP_DIR}/output/sources/linux-6.1.38" ]; then
-        tar -xf ${TOP_DIR}/dl/linux/${name} -C ${TOP_DIR}/output/sources
-    fi
-
-    cd ${TOP_DIR}/output/sources/linux-6.1.38/
-    make x86_64_defconfig
-    make -j2 && cp arch/x86/boot/bzImage ${TOP_DIR}/output/target
-else
-    echo "the package does not exist."
-fi
+# Build the package.
+$source ${PAC_DIR}/build.sh ${TOP_DIR} ${BUILD_DIR}

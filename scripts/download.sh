@@ -1,29 +1,32 @@
 #!/bin/sh
 
-name=$(cat ./packages/busybox/busybox.json | jq -r '.name')
-url=$(cat ./packages/busybox/busybox.json | jq -r '.download.file')
+TOP_DIR=$PWD
+DL_DIR=${TOP_DIR}/dl
+NAME_KEY='.name'
+DL_FILE_KEY='.download.file'
 
-
-if [ -n "${url}" ]; then
-    if [ ! -f "dl/busybox/""${name}" ]; then
-        wget -P dl/busybox ${url}
-    fi
-elif [ -z "${url}" ]; then
-    echo "search from default repo."
+# Get json file path.
+if [ "linux" = "$1" ]; then
+    JSON_FILE=${TOP_DIR}/kernel/$1.json
 else
-    echo "Failed in package."
+    JSON_FILE=${TOP_DIR}/packages/$1/$1.json
 fi
 
+# Get json keyword value.
+if [ -f ${JSON_FILE} ]; then
+    PAC_NAME=$(cat ${JSON_FILE} | jq -r ${NAME_KEY})
+    URL=$(cat ${JSON_FILE} | jq -r ${DL_FILE_KEY})
+else
+    echo "the "${JSON_FILE}" does not exist."
+    exit 1
+fi
 
-name=$(cat ./kernel/linux.json | jq -r '.name')
-url=$(cat ./kernel/linux.json | jq -r '.download.file')
-
-
-if [ -n "${url}" ]; then
-    if [ ! -f "dl/linux/""${name}" ]; then
-        wget -P dl/linux ${url}
+# Download package.
+if [ -n "${URL}" ]; then
+    if [ ! -f "${DL_DIR}/$1/${PAC_NAME}" ]; then
+        wget -P ${DL_DIR}/$1 ${URL}
     fi
-elif [ -z "${url}" ]; then
+elif [ -z "${URL}" ]; then
     echo "search from default repo."
 else
     echo "Failed in package."
