@@ -14,7 +14,7 @@ fi
 
 # Get json keyword value.
 if [ -f ${JSON_FILE} ]; then
-    PAC_NAME=$(cat ${JSON_FILE} | jq -r ${NAME_KEY})
+    PKG_NAME=$(cat ${JSON_FILE} | jq -r ${NAME_KEY})
     URL=$(cat ${JSON_FILE} | jq -r ${DL_FILE_KEY})
 else
     echo "the "${JSON_FILE}" does not exist."
@@ -23,7 +23,7 @@ fi
 
 # Download package.
 if [ -n "${URL}" ]; then
-    if [ ! -f "${DL_DIR}/$1/${PAC_NAME}" ]; then
+    if [ ! -f "${DL_DIR}/$1/${PKG_NAME}" ]; then
         wget -P ${DL_DIR}/$1 ${URL}
     fi
 elif [ -z "${URL}" ]; then

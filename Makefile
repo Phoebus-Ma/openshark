@@ -16,13 +16,14 @@ $(shell if [ ! -d ${OUTPUT}"/sources" ]; then mkdir -p ${OUTPUT}"/sources"; fi )
 $(shell if [ ! -d ${OUTPUT}"/target" ]; then mkdir -p ${OUTPUT}"/target"; fi )
 $(shell if [ ! -d ${OUTPUT}"/rootfs" ]; then mkdir -p ${OUTPUT}"/rootfs"; fi )
 
-PACKAGE_LIST=busybox linux
+PACKAGE_LIST=busybox linux glibc
 
 all:
+	$(TOP_DIR)/scripts/mkrootfs.sh
+
 	@$(foreach item, $(PACKAGE_LIST), \
 		$(TOP_DIR)/scripts/download.sh $(item); \
-		$(TOP_DIR)/scripts/build.sh $(item) \
+		$(TOP_DIR)/scripts/build.sh $(item); \
 	)
 
-	$(TOP_DIR)/scripts/mkrootfs.sh
 	$(TOP_DIR)/scripts/pack.sh

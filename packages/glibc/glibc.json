@@ -1,7 +1,7 @@
 {
     "name"  : "glibc-2.37.tar.xz",
     "download"  : {
-        "file"  : "http://mirrors.ustc.edu.cn/gnu/glibc/glibc-2.37.tar.xz",
+        "file"  : "https://mirrors.ustc.edu.cn/gnu/glibc/glibc-2.37.tar.xz",
         "md5"   : "e89cf3dcb64939d29f04b4ceead5cc4e  glibc-2.37.tar.xz"
     }
 }

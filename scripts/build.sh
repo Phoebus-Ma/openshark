@@ -7,12 +7,12 @@ NAME_KEY='.name'
 
 # Get json file path.
 if [ "linux" = "$1" ]; then
-    PAC_DIR=${TOP_DIR}/kernel
+    PKG_DIR=${TOP_DIR}/kernel
 else
-    PAC_DIR=${TOP_DIR}/packages/$1
+    PKG_DIR=${TOP_DIR}/packages/$1
 fi
 
-JSON_FILE=${PAC_DIR}/$1.json
+JSON_FILE=${PKG_DIR}/$1.json
 
 # Get json keyword value.
 if [ -f ${JSON_FILE} ]; then
@@ -38,4 +38,4 @@ else
 fi
 
 # Build the package.
-$source ${PAC_DIR}/build.sh ${TOP_DIR} ${BUILD_DIR}
+$source ${PKG_DIR}/build.sh ${TOP_DIR} ${BUILD_DIR}
