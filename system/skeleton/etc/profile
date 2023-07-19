@@ -2,7 +2,10 @@
 
 USER="id -un"
 LOGNAME=$USER
-PS1='[root@linux] \w$ '
-PATH=$PATH
+PS1='\u@\h:\w\$ '
 HOSTNAME='/bin/hostname'
-export USER LOGNAME PS1 PATH
+
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
+LD_LIBRARY_PATH=/lib:/lib64:/usr/lib:/usr/lib64
+
+export USER LOGNAME PS1 PATH LD_LIBRARY_PATH

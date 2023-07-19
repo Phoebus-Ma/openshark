@@ -1,13 +1,5 @@
 #!/bin/sh
 
-PATH=/sbin:/bin:/usr/sbin:/usr/bin
-LD_LIBRARY_PATH=/lib:/lib64:/usr/lib:/usr/lib64
-runlevel=S
-prevlevel=N
 umask 022
-export PATH LD_LIBRARY_PATH runlevel prevlevel
 
-/bin/mount -a
-echo /sbin/mdev > /proc/sys/kernel/hotplug
-mdev -s
-/bin/hostname -F /etc/sysconfig/HOSTNAME
+echo "--------Welcome to Openshark--------"
