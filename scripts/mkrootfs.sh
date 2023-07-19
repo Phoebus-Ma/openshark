@@ -11,3 +11,4 @@ sudo mknod -m 664 tty3 c 4 3
 sudo mknod -m 664 tty4 c 4 4
 sudo mknod -m 664 console c 5 1
 sudo mknod -m 664 null c 1 3
+sudo mknod -m 664 zero c 1 5

@@ -33,3 +33,7 @@ rm $1/output/rootfs/usr/lib/*.a
 rm $1/output/rootfs/usr/lib/*.o
 rm -rf $1/output/rootfs/usr/lib/audit
 rm -rf $1/output/rootfs/usr/lib/gconv
+
+rm $1/output/rootfs/usr/lib/libc.so
+rm $1/output/rootfs/usr/lib/libm.so
+strip $1/output/rootfs/usr/lib/*.so*
