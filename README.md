@@ -1,4 +1,6 @@
 
+![openshark](docs/openshark.png)
+
 # Introduction
 
 OpenShark is an embedded Linux operating system.
